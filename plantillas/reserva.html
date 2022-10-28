@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <title>Document</title>
+</head>
+<body class="container mt-5">
+    <div class="alert alert-info display-1 text-center">LISTADO DE RESERVAS</div>
+    {% if reservas %}
+    <table class="table table-striped table-inverse table-responsive">
+        <thead class="thead-inverse">
+            <tr>
+                <th>nombre</th>
+                <th>telefono</th>
+                <th>fecha_reserva</th>
+                <th>hora</th>
+                <th>cantidad_persona</th>
+                <th>estado</th>
+                <th>observacion</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reserva in reservas %}
+            <tr>
+                <td>{{ reserva.nombre}}</td>
+                <td>{{ reserva.telefono}}</td>
+                <td>{{ reserva.fecha_reserva}}</td>
+                <td>{{ reserva.hora}}</td>
+                <td>{{ reserva.cantidad_persona}}</td>
+                <td>{{ reserva.estado}}</td>
+                <td>{{ reserva.observacion}}</td>
+                <td><a href="/actualizarreserva/{{reserva.id}}" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></td>
+                <td><a href="/eliminarreserva/{{reserva.id}}" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <div class="alert alert-primary" role="alert">
+        <strong>No se encuentran Reservas en el sistema</strong>
+    </div>
+    {% endif %}
+
+    <a href="../" class="btn btn-danger">VOLVER</a>
+    <a href="../agregarreserva/" class="btn btn-info float-end">AGREGAR RESERVA</a>
+    
+</body>
+</html>
